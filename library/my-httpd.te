@@ -1,0 +1,16 @@
+
+module my-httpd 1.0;
+
+require {
+	type admin_home_t;
+	type httpd_t;
+	type sysctl_net_t;
+	class file { getattr open read };
+}
+
+#============= httpd_t ==============
+
+#!!!! The file '/var/www/html/daloradius/login.php' is mislabeled on your system.  
+#!!!! Fix with $ restorecon -R -v /var/www/html/daloradius/login.php
+allow httpd_t admin_home_t:file { getattr open read };
+allow httpd_t sysctl_net_t:file { getattr open read };
